@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The only CSS in the project: the Broadsheet token values, light and dark.
+   Everything else is Tailwind classes. */
+:root {
+  --paper: #fbfaf9;
+  --paper-2: #f3f2f2;
+  --ink: #201e1d;
+  --ink-2: #605d5d;
+  --ink-3: #9b9797;
+  --rule: rgba(32, 30, 29, 0.16);
+  --hairline: rgba(32, 30, 29, 0.1);
+  --spot: #006786;
+  --spot-2: #aa0b56;
+}
+.dark {
+  --paper: #131211;
+  --paper-2: #1b1a19;
+  --ink: #f2efed;
+  --ink-2: #b0aba8;
+  --ink-3: #7d7979;
+  --rule: rgba(255, 255, 255, 0.18);
+  --hairline: rgba(255, 255, 255, 0.1);
+  --spot: #62c5ee;
+  --spot-2: #ff90b1;
+}
+html { background: var(--paper); }
+::selection { background: rgba(0, 136, 176, 0.18); }
+:focus-visible { outline: 2px solid var(--spot); outline-offset: 2px; }
+
+@keyframes smd-fade { from { opacity: 0; } to { opacity: 1; } }
+.animate-in { animation: smd-fade 0.25s ease both; }
