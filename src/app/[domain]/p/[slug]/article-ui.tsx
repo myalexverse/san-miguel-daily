@@ -93,8 +93,8 @@ export default function ArticleUI({ post }: { post: any }) {
               />
               
               {!unlocked && (
-                <div className="relative -mt-24 pt-32 pb-4 bg-gradient-to-t from-paper via-paper to-transparent z-10">
-                  <div className="mt-2 border-t border-ink pt-8">
+                <div className="absolute bottom-0 left-0 w-full pt-48 pb-4 bg-gradient-to-t from-paper via-paper to-transparent z-10">
+                  <div className="mt-2 border-t border-ink pt-8 bg-paper">
                     <Kicker tone="spot2">{t({ es: "Continúa para suscriptores", en: "Continues for subscribers" })}</Kicker>
                     <h3 className="text-2xl font-semibold leading-tight tracking-tight md:text-[34px]">
                       {t({
