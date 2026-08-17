@@ -10,6 +10,7 @@ import { ImagePlaceholder } from "@/components/brands/daily/ImagePlaceholder";
 import { Button, Kicker, SectionHeading } from "@/components/brands/daily/ui";
 import { useUi, useT } from "@/components/brands/daily/UiProvider";
 import { article } from "@/components/brands/daily/lib/content";
+import { ShareBar } from "@/components/brands/daily/ShareBar";
 
 export default function ArticleUI({ post }: { post: any }) {
   const { unlocked, setPaywall, unlock } = useUi();
@@ -38,15 +39,8 @@ export default function ArticleUI({ post }: { post: any }) {
                 </p>
                 <div className="mt-6 flex items-center gap-4 text-sm text-ink3">
                   <span suppressHydrationWarning>{new Date(post.created_at).toLocaleDateString('es-MX')}</span>
-                  <button className="hover:text-spot transition-colors flex items-center gap-1" onClick={() => {
-                    if (navigator.share) {
-                      navigator.share({ title: post.title, url: window.location.href }).catch(console.error);
-                    }
-                  }}>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
-                    {t({ es: "Compartir", en: "Share" })}
-                  </button>
                 </div>
+                <ShareBar title={post.title} className="mt-4 border-t border-hairline pt-4" />
               </div>
               <div className="lg:w-1/2 w-full">
                 {post.image_url && (
@@ -119,6 +113,7 @@ export default function ArticleUI({ post }: { post: any }) {
                   </div>
                 </div>
               )}
+              <ShareBar title={post.title} className="mt-8 border-t border-hairline pt-6" />
             </div>
 
             {/* Etiqueta de Autor y Compartir (Solo para Ensayos) */}
