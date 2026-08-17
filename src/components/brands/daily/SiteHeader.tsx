@@ -13,22 +13,24 @@ export function SiteHeader({ variant = "full" }: { variant?: "full" | "slim" }) 
 
   if (variant === "slim") {
     return (
-      <header className="sticky top-0 z-30 flex items-center justify-between gap-4 border-b border-hairline bg-paper px-5 py-3 md:px-16">
-        <Link href="/" className="text-ink">
-          <Logo className="h-5 w-auto md:h-6" />
-        </Link>
-        <nav className="hidden items-center gap-7 text-xs uppercase tracking-nav md:flex">
-          {nav.map((n) => (
-            <Link key={n.slug} href={"/seccion/" + n.slug} className="text-ink hover:text-spot">
-              {t(n.label)}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex items-center gap-4">
-          <LangThemeControls />
-          <Button onClick={() => setPaywall(true)} className="px-3 py-1.5 text-xs">
-            {t({ es: "Suscríbete", en: "Subscribe" })}
-          </Button>
+      <header className="sticky top-0 z-30 border-b border-hairline bg-paper">
+        <div className="flex items-center justify-between gap-4 px-5 py-3 md:px-16 max-w-7xl mx-auto">
+          <Link href="/" className="text-ink">
+            <Logo className="h-5 w-auto md:h-6" />
+          </Link>
+          <nav className="hidden items-center gap-7 text-xs uppercase tracking-nav md:flex">
+            {nav.map((n) => (
+              <Link key={n.slug} href={"/seccion/" + n.slug} className="text-ink hover:text-spot">
+                {t(n.label)}
+              </Link>
+            ))}
+          </nav>
+          <div className="flex items-center gap-4">
+            <LangThemeControls />
+            <Button onClick={() => setPaywall(true)} className="px-3 py-1.5 text-xs">
+              {t({ es: "Suscríbete", en: "Subscribe" })}
+            </Button>
+          </div>
         </div>
       </header>
     );
@@ -37,18 +39,20 @@ export function SiteHeader({ variant = "full" }: { variant?: "full" | "slim" }) 
   return (
     <header>
       {/* utility rail — desktop only */}
-      <div className="hidden items-center justify-between border-b border-hairline px-16 py-3 text-xs text-ink2 md:flex">
-        <div>
-          {t({ es: "Domingo 3 de agosto de 2026", en: "Sunday, August 3, 2026" })} · San Miguel de Allende, Gto. · 24°C
-        </div>
-        <div className="flex items-center gap-6">
-          <LangThemeControls />
-          <Link href="/buscar" className="text-ink2 hover:text-spot">
-            {t({ es: "Buscar", en: "Search" })}
-          </Link>
-          <Button onClick={() => setPaywall(true)} className="px-3 py-1.5 text-xs">
-            {t({ es: "Suscríbete", en: "Subscribe" })}
-          </Button>
+      <div className="hidden border-b border-hairline md:block">
+        <div className="flex items-center justify-between px-5 md:px-16 py-3 text-xs text-ink2 max-w-7xl mx-auto">
+          <div>
+            {t({ es: "Domingo 3 de agosto de 2026", en: "Sunday, August 3, 2026" })} · San Miguel de Allende, Gto. · 24°C
+          </div>
+          <div className="flex items-center gap-6">
+            <LangThemeControls />
+            <Link href="/buscar" className="text-ink2 hover:text-spot">
+              {t({ es: "Buscar", en: "Search" })}
+            </Link>
+            <Button onClick={() => setPaywall(true)} className="px-3 py-1.5 text-xs">
+              {t({ es: "Suscríbete", en: "Subscribe" })}
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -76,7 +80,7 @@ export function SiteHeader({ variant = "full" }: { variant?: "full" | "slim" }) 
       </div>
 
       {/* masthead — desktop */}
-      <div className="hidden px-16 pt-11 md:block">
+      <div className="hidden px-5 md:px-16 pt-11 md:block max-w-7xl mx-auto">
         <div className="h-[3px] bg-ink" />
         <div className="flex items-end justify-between py-5">
           <Link href="/" className="text-ink">

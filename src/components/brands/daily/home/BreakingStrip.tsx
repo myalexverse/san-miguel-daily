@@ -8,7 +8,7 @@ import { breaking } from "@/components/brands/daily/lib/content";
 export function BreakingStrip() {
   const t = useT();
   return (
-    <div className="flex items-baseline gap-3 bg-paper2 px-5 py-3 md:mt-6 md:gap-5 md:bg-transparent md:px-16 md:py-0">
+    <div className="flex items-baseline gap-3 bg-paper2 px-5 py-3 md:mt-6 md:gap-5 md:bg-transparent md:px-16 md:py-0 max-w-7xl mx-auto">
       <Tag tone="accent2">{t({ es: "Última hora", en: "Breaking" })}</Tag>
       <Link href="/articulo" className="text-[15px] leading-snug text-ink hover:text-spot2 md:text-lg">
         {t(breaking)}
