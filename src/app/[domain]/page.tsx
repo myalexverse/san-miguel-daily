@@ -30,7 +30,7 @@ export default async function DomainHomePage({
     .single()
 
   // Buscar las noticias publicadas de este medio
-  let posts = []
+  let posts: any[] = []
   if (tenant) {
     const { data } = await supabase
       .from('posts')

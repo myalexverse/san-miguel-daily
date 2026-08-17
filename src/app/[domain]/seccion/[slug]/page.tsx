@@ -30,7 +30,7 @@ export default async function Page({
     .eq('domain', targetDomain)
     .single();
 
-  let posts = []
+  let posts: any[] = []
   if (tenant) {
     const { data } = await supabase
       .from('posts')
