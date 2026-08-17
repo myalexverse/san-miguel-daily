@@ -11,10 +11,10 @@ export function Footer() {
     {
       title: { es: "El periódico", en: "The paper" },
       links: [
-        { es: "Quiénes somos", en: "About us" },
-        { es: "Código editorial", en: "Editorial code" },
-        { es: "Contacto", en: "Contact" },
-        { es: "Publicidad", en: "Advertising" },
+        { es: "Quiénes somos", en: "About us", href: "/info/quienes-somos" },
+        { es: "Código editorial", en: "Editorial code", href: "/info/codigo-editorial" },
+        { es: "Contacto", en: "Contact", href: "/info/contacto" },
+        { es: "Publicidad", en: "Advertising", href: "/info/publicidad" },
       ],
     },
     {
@@ -49,8 +49,8 @@ export function Footer() {
         <div key={i} className="flex flex-col gap-2.5">
           <strong className="font-semibold text-ink">{t(c.title)}</strong>
           {c.links.map((l, j) => (
-            <Link key={j} href="#" className="text-ink2 hover:text-spot">
-              {t(l)}
+            <Link key={j} href={(l as any).href || "#"} className="text-ink2 hover:text-spot">
+              {t(l as any)}
             </Link>
           ))}
         </div>
