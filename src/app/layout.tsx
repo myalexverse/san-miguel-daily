@@ -15,6 +15,27 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "San Miguel DAILY | El periódico local de estándar internacional",
   description: "Noticias locales, política, economía, cultura y turismo de San Miguel de Allende.",
+  openGraph: {
+    title: "San Miguel DAILY | El periódico local de estándar internacional",
+    description: "Noticias locales, política, economía, cultura y turismo de San Miguel de Allende.",
+    url: "https://sanmigueldaily.com",
+    siteName: "San Miguel DAILY",
+    images: [
+      {
+        url: "https://sanmigueldaily.com/images/news_patrimony_law.jpg",
+        width: 1200,
+        height: 630,
+        alt: "San Miguel DAILY",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "San Miguel DAILY",
+    description: "Noticias locales, política, economía, cultura y turismo de San Miguel de Allende.",
+    images: ["https://sanmigueldaily.com/images/news_patrimony_law.jpg"],
+  },
   icons: {
     icon: "/icon.png",
     apple: "/apple-icon.png",
