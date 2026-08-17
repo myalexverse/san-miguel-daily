@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sanmigueldaily.com"),
   title: "San Miguel DAILY | El periódico local de estándar internacional",
   description: "Noticias locales, política, economía, cultura y turismo de San Miguel de Allende.",
   openGraph: {

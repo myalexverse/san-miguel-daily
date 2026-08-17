@@ -44,6 +44,7 @@ export async function generateMetadata({
   const imageUrl = rawImage.startsWith('http') ? rawImage : `https://sanmigueldaily.com${rawImage}`
 
   return {
+    metadataBase: new URL('https://sanmigueldaily.com'),
     title: `${title} | San Miguel DAILY`,
     description: description,
     openGraph: {
