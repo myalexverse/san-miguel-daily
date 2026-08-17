@@ -21,7 +21,7 @@ export function HeroWithSidebar({ heroPost, latestPosts }: { heroPost: any, late
               {t(heroPost?.title)}
             </Link>
           </h2>
-          <p className="text-[15px] lg:text-base text-ink2 leading-relaxed mb-6 font-sans text-pretty">
+          <p className="text-[15px] lg:text-base text-ink2 leading-relaxed mb-6 font-sans text-pretty line-clamp-4 md:line-clamp-none">
             {t(heroPost?.excerpt)}
           </p>
           <div className="text-xs text-ink font-sans tracking-wide">
@@ -30,7 +30,7 @@ export function HeroWithSidebar({ heroPost, latestPosts }: { heroPost: any, late
         </div>
 
         {/* Middle: Hero Image (5 cols) */}
-        <div className="md:col-span-5 flex flex-col">
+        <div className="md:col-span-5 flex flex-col order-first md:order-none mb-6 md:mb-0">
           <Link href={`/p/${heroPost?.slug}`} className="block group cursor-pointer w-full h-[300px] md:h-[450px] rounded-[4px] overflow-hidden bg-paper-2">
             {heroPost?.image_url && (
               <img 
