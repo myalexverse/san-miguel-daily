@@ -80,39 +80,11 @@ export default function ArticleUI({ post }: { post: any }) {
           </aside>
 
           <div className="text-[18px] leading-[1.7] md:text-xl md:leading-[1.72]">
-            <div className={`relative ${unlocked ? '' : 'max-h-[800px] overflow-hidden'}`}>
+            <div>
               <div 
                 className="prose prose-lg dark:prose-invert max-w-none text-ink text-[18px] leading-[1.7] md:text-xl md:leading-[1.72]" 
                 dangerouslySetInnerHTML={{ __html: post.content }} 
               />
-              
-              {!unlocked && (
-                <div className="absolute bottom-0 left-0 w-full pt-48 pb-4 bg-gradient-to-t from-paper via-paper to-transparent z-10">
-                  <div className="mt-2 border-t border-ink pt-8 bg-paper">
-                    <Kicker tone="spot2">{t({ es: "Continúa para suscriptores", en: "Continues for subscribers" })}</Kicker>
-                    <h3 className="text-2xl font-semibold leading-tight tracking-tight md:text-[34px]">
-                      {t({
-                        es: "Lee este reportaje completo y todo San Miguel Daily por 89 pesos al mes",
-                        en: "Read this feature in full, and all of San Miguel Daily, for 89 pesos a month",
-                      })}
-                    </h3>
-                    <p className="mb-6 mt-4 max-w-[32em] text-base leading-relaxed text-ink2 md:text-[17px]">
-                      {t({
-                        es: "Sin anuncios, con el boletín diario y acceso al archivo desde 2022. Cancela cuando quieras.",
-                        en: "No ads, the daily briefing included, and archive access back to 2022. Cancel anytime.",
-                      })}
-                    </p>
-                    <div className="flex flex-col gap-3 md:flex-row md:items-center">
-                      <Button onClick={() => setPaywall(true)} className="h-11">
-                        {t({ es: "Ver los planes", en: "See the plans" })}
-                      </Button>
-                      <Button variant="ghost" onClick={unlock} className="h-11">
-                        {t({ es: "Ya soy suscriptor", en: "I'm already a subscriber" })}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
               <ShareBar title={post.title} className="mt-8 border-t border-hairline pt-6" />
             </div>
 
