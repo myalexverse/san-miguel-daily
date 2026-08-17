@@ -10,13 +10,50 @@ const oswald = Oswald({ subsets: ['latin'], variable: '--font-heading' })
 export async function generateMetadata({ params }: { params: Promise<{ domain: string }> }): Promise<Metadata> {
   const resolvedParams = await params
   
-  if (resolvedParams.domain === 'daily') {
-    return { title: 'San Miguel Daily | El periódico digital premium' }
+  const siteTitles: Record<string, string> = {
+    daily: 'San Miguel DAILY | El periódico local de estándar internacional',
+    central: 'Central SMA | El periódico de información general',
+    radar: 'Radar San Miguel | Noticias Inmediatas'
   }
-  if (resolvedParams.domain === 'central') {
-    return { title: 'Central SMA | El periódico de información general' }
+
+  const siteDescriptions: Record<string, string> = {
+    daily: 'Noticias locales, política, economía, cultura y turismo de San Miguel de Allende.',
+    central: 'Información general y actualidad del estado de Guanajuato y la región del Bajío.',
+    radar: 'Noticias inmediatas y de última hora en San Miguel de Allende.'
   }
-  return { title: 'Radar San Miguel | Noticias Inmediatas' }
+
+  const domainKey = resolvedParams.domain || 'daily'
+  const title = siteTitles[domainKey] || siteTitles.daily
+  const description = siteDescriptions[domainKey] || siteDescriptions.daily
+
+  return {
+    title: {
+      template: '%s | San Miguel DAILY',
+      default: title,
+    },
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      url: 'https://sanmigueldaily.com',
+      siteName: 'San Miguel DAILY',
+      images: [
+        {
+          url: 'https://sanmigueldaily.com/images/news_patrimony_law.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'San Miguel DAILY',
+        },
+      ],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: title,
+      description: description,
+      images: ['https://sanmigueldaily.com/images/news_patrimony_law.jpg'],
+    },
+  }
 }
 
 export default async function DomainLayout({
