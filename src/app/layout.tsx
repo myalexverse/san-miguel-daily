@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://sanmigueldaily.com"),
   title: "San Miguel DAILY | El periódico local de estándar internacional",
   description: "Noticias locales, política, economía, cultura y turismo de San Miguel de Allende.",
+  verification: {
+    google: "b8a27710ae7063f3",
+  },
   openGraph: {
     title: "San Miguel DAILY | El periódico local de estándar internacional",
     description: "Noticias locales, política, economía, cultura y turismo de San Miguel de Allende.",

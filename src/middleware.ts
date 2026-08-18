@@ -18,8 +18,17 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl
   const hostname = req.headers.get('host') || ''
 
-  // Permitir acceso directo a /admin y /images
-  if (url.pathname.startsWith('/admin') || url.pathname.startsWith('/images')) {
+  // Permitir acceso directo a /admin, /images, /google*, /sitemap, /robots y archivos estáticos
+  if (
+    url.pathname.startsWith('/admin') ||
+    url.pathname.startsWith('/images') ||
+    url.pathname.startsWith('/google') ||
+    url.pathname === '/sitemap.xml' ||
+    url.pathname === '/robots.txt' ||
+    url.pathname.endsWith('.html') ||
+    url.pathname.endsWith('.txt') ||
+    url.pathname.endsWith('.xml')
+  ) {
     return NextResponse.next()
   }
 
