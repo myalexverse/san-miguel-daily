@@ -41,8 +41,8 @@ export function SiteHeader({ variant = "full" }: { variant?: "full" | "slim" }) 
       {/* utility rail — desktop only */}
       <div className="hidden border-b border-hairline md:block">
         <div className="flex items-center justify-between px-5 md:px-16 py-3 text-xs text-ink2 max-w-7xl mx-auto">
-          <div>
-            {t({ es: "Domingo 3 de agosto de 2026", en: "Sunday, August 3, 2026" })} · San Miguel de Allende, Gto. · 24°C
+          <div suppressHydrationWarning className="capitalize">
+            {new Date().toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} · San Miguel de Allende, Gto. · 24°C
           </div>
           <div className="flex items-center gap-6">
             <LangThemeControls />
