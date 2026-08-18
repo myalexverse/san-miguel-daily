@@ -21,6 +21,34 @@ export default function ArticleUI({ post, relatedPosts = [] }: { post: any; rela
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": post.title,
+            "image": [
+              post.image_url ? (post.image_url.startsWith('http') ? post.image_url : `https://sanmigueldaily.com${post.image_url}`) : 'https://sanmigueldaily.com/images/news_patrimony_law.jpg'
+            ],
+            "datePublished": post.created_at,
+            "dateModified": post.created_at,
+            "author": [{
+              "@type": "Person",
+              "name": post.author_name || "Redacción San Miguel Daily"
+            }],
+            "publisher": {
+              "@type": "Organization",
+              "name": "San Miguel DAILY",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://sanmigueldaily.com/icon.png"
+              }
+            },
+            "description": post.excerpt
+          })
+        }}
+      />
       <SiteHeader variant="slim" />
       {/* reading progress */}
       <div className="h-0.5 w-[38%] bg-spot" />
