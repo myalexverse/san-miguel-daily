@@ -12,7 +12,7 @@ import { useUi, useT } from "@/components/brands/daily/UiProvider";
 import { article } from "@/components/brands/daily/lib/content";
 import { ShareBar } from "@/components/brands/daily/ShareBar";
 
-export default function ArticleUI({ post }: { post: any }) {
+export default function ArticleUI({ post, relatedPosts = [] }: { post: any; relatedPosts?: any[] }) {
   const { unlocked, setPaywall, unlock } = useUi();
   const t = useT();
 
@@ -34,31 +34,40 @@ export default function ArticleUI({ post }: { post: any }) {
                 <h1 className="text-[33px] font-semibold leading-[1.04] tracking-tight text-pretty md:text-[48px] lg:text-[56px] md:leading-none mt-2">
                   {post.title}
                 </h1>
-                <p className="mt-4 text-[17px] leading-relaxed text-ink2 text-pretty md:mt-7 md:text-[23px]">
-                  {post.excerpt || t(article.dek)}
+                <p className="mt-4 text-xl leading-relaxed text-ink2 md:text-[25px] md:leading-[1.3] text-pretty">
+                  {post.excerpt}
                 </p>
-                <div className="mt-6 flex items-center gap-4 text-sm text-ink3">
-                  <span suppressHydrationWarning>{new Date(post.created_at).toLocaleDateString('es-MX')}</span>
+                <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink2">
+                  <span className="font-semibold text-ink">{post.author_name || "Redacción San Miguel Daily"}</span>
+                  <span>·</span>
+                  <span>{new Date(post.created_at || Date.now()).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                 </div>
-                <ShareBar title={post.title} className="mt-4 border-t border-hairline pt-4" />
               </div>
               <div className="lg:w-1/2 w-full">
                 {post.image_url && (
-                  <img src={post.image_url} alt="Cover" className="w-full h-auto aspect-[4/3] object-cover rounded-sm shadow-sm" />
+                  <img 
+                    src={post.image_url} 
+                    alt={post.title} 
+                    className="w-full h-[320px] md:h-[420px] object-cover rounded-lg shadow-sm border border-hairline"
+                  />
                 )}
               </div>
             </div>
           </header>
         ) : (
-          <header className="px-5 pt-10 md:max-w-[1040px] md:px-16 md:pt-18">
-            <div className="mx-auto mt-6 px-5 md:mt-10 md:px-0">
-              <Kicker tone="spot">{post.category?.toUpperCase() || t(article.kicker)}</Kicker>
-              <h1 className="text-[33px] font-semibold leading-[1.04] tracking-tight text-pretty md:text-[68px] md:leading-none mt-2">
-                {post.title}
-              </h1>
-              <p className="mt-4 text-[17px] leading-relaxed text-ink2 text-pretty md:mt-7 md:text-[23px]">
-                {post.excerpt || t(article.dek)}
-              </p>
+          <header className="px-5 pt-10 md:max-w-[760px] md:px-0 md:pt-18 mx-auto">
+            <Kicker tone="spot2">{t({ es: "Ensayo", en: "Essay" })}</Kicker>
+            <h1 className="mt-2 text-[33px] font-normal italic leading-[1.04] text-pretty md:text-[52px] md:leading-none">
+              {post.title}
+            </h1>
+            <p className="mt-4 text-xl leading-relaxed text-ink2 md:text-[23px]">
+              {post.excerpt}
+            </p>
+            <div className="mt-6 flex items-center gap-4 text-sm text-ink2 border-b border-hairline pb-6">
+              <div>
+                <div className="font-semibold text-ink">{post.author_name || "Mariana Escobedo"}</div>
+                <div>{t({ es: "Periodista y analista local", en: "Journalist & local analyst" })}</div>
+              </div>
             </div>
           </header>
         )}
@@ -123,11 +132,19 @@ export default function ArticleUI({ post }: { post: any }) {
           <aside className="md:sticky md:top-24">
             <SectionHeading>{t({ es: "Relacionadas", en: "Related" })}</SectionHeading>
             <div className="flex flex-col gap-5">
-              {article.related.map((r, i) => (
-                <Link key={i} href="/articulo" className="text-base leading-snug text-ink hover:text-spot md:text-[17px]">
-                  {t(r)}
-                </Link>
-              ))}
+              {relatedPosts && relatedPosts.length > 0 ? (
+                relatedPosts.slice(0, 3).map((r: any, i: number) => (
+                  <Link key={r.id || i} href={`/p/${r.slug}`} className="text-base leading-snug text-ink hover:text-spot md:text-[17px]">
+                    {r.title}
+                  </Link>
+                ))
+              ) : (
+                article.related.map((r, i) => (
+                  <Link key={i} href="/seccion/san-miguel" className="text-base leading-snug text-ink hover:text-spot md:text-[17px]">
+                    {t(r)}
+                  </Link>
+                ))
+              )}
             </div>
           </aside>
         </div>

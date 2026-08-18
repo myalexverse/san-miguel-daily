@@ -86,7 +86,7 @@ export default function SearchPage() {
               <article key={i}>
                 <div className="mb-2 text-[11px] uppercase tracking-label text-ink3 md:text-xs">{t(r.meta)}</div>
                 <h3 className={"text-[22px] leading-tight md:text-[30px] " + (r.italic ? "font-normal italic" : "font-semibold tracking-tight")}>
-                  <Link href="/articulo" className="text-ink hover:text-spot">
+                  <Link href={`/p/${r.slug || 'obra-pluvial-cachoches-agosto-2026'}`} className="text-ink hover:text-spot">
                     {t(r.title)}
                   </Link>
                 </h3>

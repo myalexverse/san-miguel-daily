@@ -74,7 +74,7 @@ export function SectionScreen({ data, posts }: { data: SectionData, posts?: any[
                 {heroPost ? heroPost.category.toUpperCase() : t(data.lead.kicker)}
               </div>
               <h2 className="text-3xl lg:text-[40px] font-serif font-bold leading-[1.1] mb-3 text-pretty">
-                <Link href={heroPost ? `/p/${heroPost.slug}` : "/articulo"} className="hover:text-spot transition-colors pointer-events-auto" style={{ color: '#ffffff' }}>
+                <Link href={heroPost ? `/p/${heroPost.slug}` : "/p/exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027"} className="hover:text-spot transition-colors pointer-events-auto" style={{ color: '#ffffff' }}>
                   {heroPost ? heroPost.title : t(data.lead.title)}
                 </Link>
               </h2>
@@ -106,7 +106,7 @@ export function SectionScreen({ data, posts }: { data: SectionData, posts?: any[
                       <span className="font-bold" suppressHydrationWarning>{item.created_at ? new Date(item.created_at).toLocaleDateString('es-MX') : item.time}</span>
                     </div>
                     <h4 className="text-[15px] font-bold leading-tight font-serif group-hover:text-spot transition-colors line-clamp-2">
-                      <Link href={item.slug ? `/p/${item.slug}` : "/articulo"}>
+                      <Link href={item.slug ? `/p/${item.slug}` : "/p/exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027"}>
                         {t(item.title)}
                       </Link>
                     </h4>
@@ -137,7 +137,7 @@ export function SectionScreen({ data, posts }: { data: SectionData, posts?: any[
                     {idx + 1}
                   </div>
                   <h4 className="text-[16px] leading-snug font-serif group-hover:text-spot transition-colors text-pretty">
-                    <Link href={item.slug ? `/p/${item.slug}` : "/articulo"}>
+                    <Link href={item.slug ? `/p/${item.slug}` : "/p/exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027"}>
                       {t(item.title)}
                     </Link>
                   </h4>
@@ -167,7 +167,7 @@ export function SectionScreen({ data, posts }: { data: SectionData, posts?: any[
                     {t({ es: "COLUMNA", en: "COLUMN" })}
                   </div>
                   <h4 className="text-[22px] font-serif font-bold leading-tight mb-2 group-hover:text-spot transition-colors text-pretty">
-                    <Link href={mainOpinion ? `/p/${mainOpinion.slug}` : "/articulo"}>
+                    <Link href={mainOpinion ? `/p/${mainOpinion.slug}` : "/p/exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027"}>
                       {mainOpinion ? mainOpinion.title : t(data.opinion!.title)}
                     </Link>
                   </h4>
@@ -187,7 +187,7 @@ export function SectionScreen({ data, posts }: { data: SectionData, posts?: any[
                   {t({ es: "INVESTIGACIÓN", en: "INVESTIGATION" })}
                 </div>
                 <h4 className="text-lg font-serif font-bold leading-tight mb-2 group-hover:text-spot transition-colors">
-                  <Link href={invPost ? `/p/${invPost.slug}` : "/articulo"}>
+                  <Link href={invPost ? `/p/${invPost.slug}` : "/p/exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027"}>
                     {invPost ? invPost.title : t(data.investigation!.title)}
                   </Link>
                 </h4>
@@ -197,7 +197,7 @@ export function SectionScreen({ data, posts }: { data: SectionData, posts?: any[
                 <div className="w-full h-32 rounded-sm overflow-hidden mb-4 bg-paper">
                    <img src={invPost?.image_url || data.investigation?.photo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="" />
                 </div>
-                <Link href={invPost ? `/p/${invPost.slug}` : "/articulo"} className="text-xs font-bold text-spot2 hover:text-ink uppercase flex justify-end items-center gap-1">
+                <Link href={invPost ? `/p/${invPost.slug}` : "/p/exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027"} className="text-xs font-bold text-spot2 hover:text-ink uppercase flex justify-end items-center gap-1">
                   {t({ es: "Leer reportaje", en: "Read feature" })} <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
@@ -230,7 +230,7 @@ export function SectionScreen({ data, posts }: { data: SectionData, posts?: any[
                     </h4>
                   </div>
                 </div>
-                <Link href={videoPost ? `/p/${videoPost.slug}` : "/articulo"} className="text-xs font-bold text-spot2 hover:text-ink uppercase flex items-center gap-1 mt-3">
+                <Link href={videoPost ? `/p/${videoPost.slug}` : "/p/exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027"} className="text-xs font-bold text-spot2 hover:text-ink uppercase flex items-center gap-1 mt-3">
                   {t({ es: "Ver video", en: "Watch video" })} <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>

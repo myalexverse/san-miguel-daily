@@ -13,7 +13,7 @@ export function HeroSection({ post }: { post?: any }) {
       <div>
         <Kicker tone="spot">{post ? "ÚLTIMA HORA" : t(heroStory.kicker)}</Kicker>
         <h2 className="text-[34px] font-semibold leading-[1.04] tracking-tight text-pretty md:text-[62px] md:leading-[1.02]">
-          <Link href={post ? `/p/${post.slug}` : "/articulo"} className="text-ink hover:text-spot">
+          <Link href={post ? `/p/${post.slug}` : "/p/exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027"} className="text-ink hover:text-spot">
             {post ? t(post.title) : t(heroStory.title)}
           </Link>
         </h2>

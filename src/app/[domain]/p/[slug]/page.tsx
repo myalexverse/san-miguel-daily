@@ -105,24 +105,20 @@ export default async function ArticlePage({
     .eq('slug', slug)
     .single()
 
-  // Fallback to a mock article if it's one of our padded UI news
-  if (!post) {
-    post = {
-      id: "mock-id",
-      title: "El tren ligero a Querétaro pondría a San Miguel a 40 minutos del Bajío industrial",
-      slug: slug,
-      excerpt: "La concesión firmada el viernes contempla siete estaciones y una inversión de 18 mil millones de pesos. Quedan por resolver el derecho de vía y el agua.",
-      content: "<p>La firma ocurrió sin ceremonia. El viernes por la tarde, en una sala de la Secretaría de Movilidad en Guanajuato capital, el gobierno del estado y un consorcio encabezado por dos constructoras mexicanas cerraron la concesión de un tren ligero de 71 kilómetros entre San Miguel de Allende y el centro de Querétaro.</p><p>El contrato prevé siete estaciones, una inversión de 18 mil millones de pesos y un plazo de operación de treinta años. Si el calendario se cumple —y en obras de esta escala rara vez se cumple— el primer tren correría en el otoño de 2030.</p><p>Para San Miguel, el cálculo es doble. Por un lado, cuarenta minutos a un corredor industrial que produce uno de cada cinco automóviles del país. Por el otro, la presión sobre una ciudad de 175 mil habitantes que ya recibe 1.4 millones de visitantes al año.</p>",
-      image_url: "/images/sma_fasma.jpg",
-      category: "San Miguel",
-      author_name: "Mariana Escobedo",
-      created_at: new Date().toISOString()
-    } as any;
-  }
+  if (!post) return notFound()
+
+  // Fetch real related posts
+  const { data: relatedPosts } = await supabase
+    .from('posts')
+    .select('id, title, slug, category, created_at')
+    .eq('tenant_id', tenant.id)
+    .neq('slug', slug)
+    .order('created_at', { ascending: false })
+    .limit(4)
 
   return (
     <>
-      <ArticleUI post={post} />
+      <ArticleUI post={post} relatedPosts={relatedPosts || []} />
     </>
   )
 }

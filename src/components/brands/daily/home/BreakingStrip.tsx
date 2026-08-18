@@ -10,7 +10,7 @@ export function BreakingStrip() {
   return (
     <div className="flex items-baseline gap-3 bg-paper2 px-5 py-3 md:mt-6 md:gap-5 md:bg-transparent md:px-16 md:py-0 max-w-7xl mx-auto">
       <Tag tone="accent2">{t({ es: "Última hora", en: "Breaking" })}</Tag>
-      <Link href="/articulo" className="text-[15px] leading-snug text-ink hover:text-spot2 md:text-lg">
+      <Link href="/p/san-miguel-de-allende-reactiva-obra-para-embellecer-la-salida-a-celaya-iniciaran-154" className="text-[15px] leading-snug text-ink hover:text-spot2 md:text-lg">
         {t(breaking)}
       </Link>
       <span className="hidden whitespace-nowrap text-xs text-ink3 md:inline">11:42</span>

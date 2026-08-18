@@ -28,7 +28,7 @@ export function NewsGrid({ posts }: { posts?: any[] }) {
           <article key={i}>
             <div className="mb-2 text-[10px] uppercase tracking-kicker text-ink3 md:mb-3 md:text-[11px]">{t(s.kicker)}</div>
             <h3 className="text-xl font-semibold leading-tight tracking-tight text-pretty md:text-[27px]">
-              <Link href="/articulo" className="text-ink hover:text-spot">
+              <Link href={`/p/${s.slug || 'exclusiva-juan-pasqualli-lidera-encuestas-panistas-2027'}`} className="text-ink hover:text-spot">
                 {t(s.title)}
               </Link>
             </h3>
