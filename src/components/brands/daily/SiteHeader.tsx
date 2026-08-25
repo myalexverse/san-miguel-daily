@@ -87,10 +87,17 @@ export function SiteHeader({ variant = "full" }: { variant?: "full" | "slim" }) 
             <Logo className="h-16 w-auto lg:h-[76px]" />
           </Link>
           <p className="max-w-[220px] text-right text-xs leading-relaxed text-ink2">
-            {t({
-              es: "Periodismo local, estándar internacional. Año 4, núm. 1.204",
-              en: "Local journalism, international standard. Year 4, no. 1,204",
-            })}
+            {(() => {
+              const launch = new Date("2023-08-04");
+              const today = new Date();
+              const year = today.getFullYear() - launch.getFullYear() + 1;
+              const daysSinceLaunch = Math.floor((today.getTime() - launch.getTime()) / 86400000) + 1;
+              const edNum = daysSinceLaunch.toLocaleString("es-MX");
+              return t({
+                es: `Periodismo local, estándar internacional. Año ${year}, núm. ${edNum}`,
+                en: `Local journalism, international standard. Year ${year}, no. ${edNum}`,
+              });
+            })()}
           </p>
         </div>
         <div className="h-px bg-ink" />
