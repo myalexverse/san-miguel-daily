@@ -66,6 +66,9 @@ export default function ArticleUI({ post, relatedPosts = [] }: { post: any; rela
                   {post.excerpt}
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink2">
+                  {post.author_avatar && (
+                    <img src={post.author_avatar} alt={post.author_name} className="h-8 w-8 rounded-full object-cover border border-rule inline-block mr-1 shadow-xs" />
+                  )}
                   <span className="font-semibold text-ink">{post.author_name || "Redacción San Miguel Daily"}</span>
                   <span>·</span>
                   <span>{new Date(post.created_at || Date.now()).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
@@ -92,9 +95,16 @@ export default function ArticleUI({ post, relatedPosts = [] }: { post: any; rela
               {post.excerpt}
             </p>
             <div className="mt-6 flex items-center gap-4 text-sm text-ink2 border-b border-hairline pb-6">
+              {post.author_avatar ? (
+                <img src={post.author_avatar} alt={post.author_name} className="h-14 w-14 rounded-full object-cover border border-rule shadow-sm" />
+              ) : (
+                <span className="flex h-14 w-14 flex-none items-center justify-center rounded-full border border-rule text-[20px] text-ink2 font-serif">
+                  {post.author_name ? post.author_name.charAt(0) : 'E'}
+                </span>
+              )}
               <div>
-                <div className="font-semibold text-ink">{post.author_name || "Mariana Escobedo"}</div>
-                <div>{t({ es: "Periodista y analista local", en: "Journalist & local analyst" })}</div>
+                <div className="font-semibold text-ink text-base">{post.author_name || "Lucas Lucatero de Diego"}</div>
+                <div>{t({ es: "Ensayo y pensamiento crítico", en: "Essay & critical thinking" })} · {new Date(post.created_at || Date.now()).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
               </div>
             </div>
           </header>
