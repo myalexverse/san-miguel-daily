@@ -31,7 +31,7 @@ export async function generateMetadata({
   if (tenant) {
     const { data } = await supabase
       .from('posts')
-      .select('title, excerpt, image_url')
+      .select('title, excerpt, image_url, category, author_name, created_at, updated_at')
       .eq('tenant_id', tenant.id)
       .eq('slug', slug)
       .single()
@@ -42,16 +42,54 @@ export async function generateMetadata({
   const description = post?.excerpt || 'Periodismo local con estándar internacional en San Miguel de Allende.'
   const rawImage = post?.image_url || '/images/news_patrimony_law.jpg'
   const imageUrl = rawImage.startsWith('http') ? rawImage : `https://sanmigueldaily.com${rawImage}`
+  const articleUrl = `https://sanmigueldaily.com/p/${slug}`
 
   return {
     metadataBase: new URL('https://sanmigueldaily.com'),
     title: `${title} | San Miguel DAILY`,
     description: description,
+    keywords: [
+      post?.category,
+      'San Miguel de Allende',
+      'San Miguel Daily',
+      'Noticias San Miguel de Allende',
+      'San Miguel de Allende news',
+      'Guanajuato',
+      'Noticias de hoy',
+      'Today news San Miguel',
+      post?.title,
+      post?.author_name
+    ].filter(Boolean) as string[],
+    authors: [{ name: post?.author_name || 'Redacción San Miguel Daily' }],
+    category: post?.category || 'Noticias',
+    alternates: {
+      canonical: articleUrl,
+      languages: {
+        'es': articleUrl,
+        'en': `${articleUrl}?lang=en`,
+        'es-MX': articleUrl,
+        'en-US': `${articleUrl}?lang=en`,
+        'x-default': articleUrl,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       title: title,
       description: description,
-      url: `https://sanmigueldaily.com/p/${slug}`,
+      url: articleUrl,
       siteName: 'San Miguel DAILY',
+      locale: 'es_MX',
+      alternateLocale: ['en_US'],
       images: [
         {
           url: imageUrl,
@@ -61,6 +99,10 @@ export async function generateMetadata({
         },
       ],
       type: 'article',
+      publishedTime: post?.created_at,
+      modifiedTime: post?.updated_at || post?.created_at,
+      authors: [post?.author_name || 'Redacción San Miguel Daily'],
+      section: post?.category || 'General',
     },
     twitter: {
       card: 'summary_large_image',

@@ -27,22 +27,35 @@ export default function ArticleUI({ post, relatedPosts = [] }: { post: any; rela
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "NewsArticle",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://sanmigueldaily.com/p/${post.slug}`
+            },
             "headline": post.title,
             "image": [
               post.image_url ? (post.image_url.startsWith('http') ? post.image_url : `https://sanmigueldaily.com${post.image_url}`) : 'https://sanmigueldaily.com/images/news_patrimony_law.jpg'
             ],
             "datePublished": post.created_at,
-            "dateModified": post.created_at,
+            "dateModified": post.updated_at || post.created_at,
+            "inLanguage": ["es-MX", "en-US"],
+            "articleSection": post.category || "Noticias",
+            "keywords": `${post.category || 'General'}, San Miguel de Allende, Guanajuato, noticias, news, San Miguel Daily`,
+            "isAccessibleForFree": true,
             "author": [{
               "@type": "Person",
-              "name": post.author_name || "Redacción San Miguel Daily"
+              "name": post.author_name || "Redacción San Miguel Daily",
+              "jobTitle": "Periodista y Redactor",
+              "image": post.author_avatar ? (post.author_avatar.startsWith('http') ? post.author_avatar : `https://sanmigueldaily.com${post.author_avatar}`) : undefined
             }],
             "publisher": {
-              "@type": "Organization",
+              "@type": "NewsMediaOrganization",
               "name": "San Miguel DAILY",
+              "url": "https://sanmigueldaily.com",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://sanmigueldaily.com/icon.png"
+                "url": "https://sanmigueldaily.com/icon.png",
+                "width": 512,
+                "height": 512
               }
             },
             "description": post.excerpt

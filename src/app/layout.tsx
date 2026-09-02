@@ -44,6 +44,27 @@ export const metadata: Metadata = {
     icon: "/icon.png",
     apple: "/apple-icon.png",
   },
+  alternates: {
+    canonical: "https://sanmigueldaily.com",
+    languages: {
+      "es": "https://sanmigueldaily.com",
+      "en": "https://sanmigueldaily.com?lang=en",
+      "es-MX": "https://sanmigueldaily.com",
+      "en-US": "https://sanmigueldaily.com?lang=en",
+      "x-default": "https://sanmigueldaily.com",
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -53,7 +74,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
